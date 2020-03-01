@@ -1,6 +1,7 @@
 package lesson09.custom_expected_comdition;
 
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
+import org.junit.rules.ExpectedException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -33,6 +34,27 @@ public class CustomExpectecComdition {
             public String toString() {
                 return String.format("%dth element \nof list \nto have text: %s\nwhile actual text was: %s\n",
                         no, expTextPart, nthElementText);
+            }
+        };
+    }
+    public static ExpectedCondition<String> pageIsLoaded(String expUrl, String expTitle){
+        return new ExpectedCondition<String>() {
+           String loadedURL;
+           String loadedTitle;
+            @NullableDecl
+            @Override
+            public String apply(@NullableDecl WebDriver webDriver) {
+                loadedURL = webDriver.getCurrentUrl();
+                loadedTitle = webDriver.getTitle();
+                return loadedURL.contains(expUrl)&loadedTitle.contains(expTitle)? loadedTitle + ": " + loadedURL: null;
+            }
+
+            @Override
+            public String toString() {
+                return "$classname{" +
+                        "loadedURL='" + loadedURL + '\'' +
+                        ", loadedTitle='" + loadedTitle + '\'' +
+                        '}';
             }
         };
     }
