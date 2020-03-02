@@ -10,6 +10,7 @@ import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class Test_Conditions {
@@ -18,7 +19,6 @@ public class Test_Conditions {
 
     @BeforeClass
     public static void setUp() {
-        //System.setProperty("webdriver.chrome.driver", "C:\\Users\\omalynovskyy\\Documents\\Soft\\chromedriver_win32\\chromedriver.exe");
         driver = new ChromeDriver();
 
         driver.manage().window().maximize();
@@ -54,6 +54,16 @@ public class Test_Conditions {
     public void verifyPageLoad(){
         String pageLoad = (new WebDriverWait(driver, 10))
                 .until(CustomExpectecComdition.pageIsLoaded("autom","Store"));
+    }
+    @Test
+    public void checkElementIsNotPresent(){
+        driver.findElement(By.id("search_query_top")).clear();
+        driver.findElement(By.id("search_query_top")).sendKeys("Dress");
+        WebElement firstRow = driver.findElement(By.xpath("//*[@id=\"index\"]/div[2]/ul/li[1]"));
+        driver.findElement(By.id("search_query_top")).clear();
+
+        String checkEl = (new WebDriverWait(driver, 10))
+                .until(CustomExpectecComdition.stalenessOfElement(firstRow));
     }
 
 }

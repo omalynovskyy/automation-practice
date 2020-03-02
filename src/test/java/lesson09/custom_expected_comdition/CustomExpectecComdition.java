@@ -1,7 +1,6 @@
 package lesson09.custom_expected_comdition;
 
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
-import org.junit.rules.ExpectedException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -58,4 +57,30 @@ public class CustomExpectecComdition {
             }
         };
     }
+
+    public static ExpectedCondition<String> stalenessOfElement(WebElement elToBeDisappeared){
+        return new ExpectedCondition<String>() {
+            String checkResult;
+
+            @NullableDecl
+            @Override
+
+            public String apply(@NullableDecl WebDriver webDriver) {
+                if (!elToBeDisappeared.isDisplayed()) {
+                    return checkResult="Element is gone";
+                } else {
+                    checkResult="Element is still present";
+                    return null;
+                }
+                }
+
+            @Override
+            public String toString() {
+                return "$classname{" +
+                        "checkResult='" + checkResult + '\'' +
+                        '}';
+            }
+        };
+    }
+
 }
