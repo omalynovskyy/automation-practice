@@ -1,13 +1,13 @@
 package lesson09.custom_expected_comdition;
 
 import org.checkerframework.checker.nullness.compatqual.NullableDecl;
+import org.junit.rules.ExpectedException;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.ui.ExpectedCondition;
 
 import java.util.List;
-import java.util.stream.Stream;
 
 public class CustomExpectecComdition {
     public static ExpectedCondition<WebElement> listNthElementHasTest(
@@ -58,55 +58,4 @@ public class CustomExpectecComdition {
             }
         };
     }
-
-    public static ExpectedCondition<String> stalenessOfElement(WebElement elToBeDisappeared){
-        return new ExpectedCondition<String>() {
-            String checkResult;
-
-            @NullableDecl
-            @Override
-
-            public String apply(@NullableDecl WebDriver webDriver) {
-                if (!elToBeDisappeared.isDisplayed()) {
-                    return checkResult="Element is gone";
-                } else {
-                    checkResult="Element is still present";
-                    return null;
-                }
-                }
-
-            @Override
-            public String toString() {
-                return "$classname{" +
-                        "checkResult='" + checkResult + '\'' +
-                        '}';
-            }
-        };
-    }
-
-    public static ExpectedCondition<WebElement> allRowsTextCheck(
-            By locator, String expTextPart) {
-        return new ExpectedCondition<WebElement>() {
-
-            @NullableDecl
-            @Override
-            public WebElement apply(@NullableDecl WebDriver driver) {
-                    List<WebElement> elements = driver.findElements(locator);
-                    Stream<WebElement> dropRows = elements.stream();
-                    if(dropRows.map(WebElement::getText).allMatch(str-> str.contains(expTextPart))){
-                        return driver.findElement(locator);
-                    }else {
-                        return null;
-                    }
-
-            }
-
-            @Override
-            public String toString() {
-                return String.format("some elements \nof list \ndon't have text: %s\n",
-                        expTextPart);
-            }
-        };
-    }
-
 }
