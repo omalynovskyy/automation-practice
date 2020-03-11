@@ -23,8 +23,8 @@ public class AccountTest {
 
         driver.get("http://automationpractice.com/index.php?controller=authentication&back=my-account");
         driver.findElement(By.id("email")).clear();
-        driver.findElement(By.id("email")).sendKeys("oleksiy.malynovskyy@gmail.com");
-        driver.findElement(By.id("passwd")).sendKeys("1-1Cfesd1");
+        driver.findElement(By.id("email")).sendKeys("email4test@gmail.com");
+        driver.findElement(By.id("passwd")).sendKeys("passwd4test");
         driver.findElement(By.id("SubmitLogin")).click();
     }
 
