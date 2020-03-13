@@ -53,10 +53,12 @@ public class TimeToBuy {
         driver.findElement(By.name("submit_search")).click();
         boolean wait = (new WebDriverWait(driver, 15))
                 .until(ExpectedConditions.textToBePresentInElementLocated(By.xpath("//*[@id=\"center_column\"]/h1/span[1]"),"PRINTED CHIFFON DRESS"));
+        //Почему так не тест не проходит и дает NullPointExecption??
 //        List<WebElement> list = (List<WebElement>) driver.findElements(By.xpath("//*[@id=\"center_column\"]/ul/li[1]"));
 //        WebElement searchItem = list.stream()
 //                .filter(element -> element.getAttribute("title").matches("Printed Chiffon Dress")).findFirst().orElse(null);
 //        searchItem.click();
+        //select list view
         driver.findElement(By.id("list")).click();
 //        WebElement addToChart = (new WebDriverWait(driver, 15))
 //                .until(ExpectedConditions.elementToBeClickable(By.xpath("//*[@id=\"center_column\"]/div/div/div[3]/h1")));
