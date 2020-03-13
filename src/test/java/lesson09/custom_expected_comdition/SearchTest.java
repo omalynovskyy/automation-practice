@@ -11,6 +11,8 @@ import org.openqa.selenium.support.ui.ExpectedCondition;
 import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.WebDriverWait;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.concurrent.TimeUnit;
 
 public class SearchTest {
@@ -32,7 +34,7 @@ public class SearchTest {
     @Test
     public void checkSearch(){
         driver.findElement(By.id("search_query_top")).clear();
-        driver.findElement(By.id("search_query_top")).sendKeys("Printed Summer Dress");
+        driver.findElement(By.id("search_query_top")).sendKeys("Printed Printed Dress");
         driver.findElement(By.name("submit_search")).click();
 
         boolean serchCountAnd1stMatch = (new WebDriverWait(driver,10))
