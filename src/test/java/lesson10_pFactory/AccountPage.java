@@ -5,6 +5,8 @@ import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.support.FindBy;
 import org.openqa.selenium.support.PageFactory;
+import org.openqa.selenium.support.ui.ExpectedConditions;
+import org.openqa.selenium.support.ui.WebDriverWait;
 
 public class AccountPage {
     WebDriver driver;
@@ -12,12 +14,13 @@ public class AccountPage {
     @FindBy (xpath = "//*[@id=\"header\"]/div[2]/div/div/nav/div[2]/a")
     private WebElement signOutBtn;
 
-    public AccountPage(WebDriver driver) {
+    protected AccountPage(WebDriver driver) {
+        this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
     LoginPage signOut(){
-        signOutBtn.click();
+        (new WebDriverWait(driver,15)).until(ExpectedConditions.elementToBeClickable(signOutBtn)).click();
         return new LoginPage(driver);
     }
 }

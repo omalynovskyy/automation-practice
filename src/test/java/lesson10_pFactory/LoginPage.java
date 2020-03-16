@@ -7,7 +7,7 @@ import org.openqa.selenium.support.PageFactory;
 
 class LoginPage {
 
-    WebDriver driver;
+    protected WebDriver driver;
     @FindBy (id = "email")
     private WebElement loginField;
 
@@ -17,13 +17,14 @@ class LoginPage {
     @FindBy (id = "SubmitLogin")
     private WebElement submitLogin;
 
-    String loginPageUrl = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
+    private String loginPageUrl = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
 
-    public LoginPage(WebDriver driver) {
+    protected LoginPage(WebDriver driver) {
+        this.driver = driver;
         PageFactory.initElements(driver, this);
     }
 
-    public void openLoginPage() {
+    protected void openLoginPage() {
         driver.get(loginPageUrl);
     }
 
