@@ -31,7 +31,6 @@ public class TestLoginAndAccount {
     public void loginByOneMthd(){
         LoginPage loginPage = new LoginPage(driver);
         loginPage.openLoginPage();
-//        boolean check = (new WebDriverWait(driver, 10)).until(ExpectedConditions.textToBePresentInElement((loginPage.submitLogin), "Sign"));
         Assert.assertThat(driver.getTitle(), CoreMatchers.containsString("Login"));
         AccountPage accountPage = loginPage.login("email4test@gmail.com", "passwd4test");
         Assert.assertThat(driver.getTitle(), CoreMatchers.containsString("My account"));
