@@ -15,17 +15,17 @@ class LoginPage {
     private WebElement passwordField;
 
     @FindBy (id = "SubmitLogin")
-    private WebElement submitLogin;
+    WebElement submitLogin;
 
     private String loginPageUrl = "http://automationpractice.com/index.php?controller=authentication&back=my-account";
+
+    protected void openLoginPage() {
+        driver.get(loginPageUrl);
+    }
 
     protected LoginPage(WebDriver driver) {
         this.driver = driver;
         PageFactory.initElements(driver, this);
-    }
-
-    protected void openLoginPage() {
-        driver.get(loginPageUrl);
     }
 
     AccountPage login (String userName, String password){
